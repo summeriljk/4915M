@@ -1,4 +1,5 @@
-﻿namespace _4915M
+﻿
+namespace _4915M
 {
     partial class pManagement
     {
@@ -159,6 +160,31 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
+        }
+
+        private void pManagement_Load(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
