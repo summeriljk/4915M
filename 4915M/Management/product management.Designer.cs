@@ -131,6 +131,7 @@ namespace _4915M
             txtToyID.Name = "txtToyID";
             txtToyID.Size = new Size(176, 38);
             txtToyID.TabIndex = 5;
+            txtToyID.TextChanged += this.txtToyID_TextChanged;
             // 
             // btnSearch
             // 
@@ -170,6 +171,11 @@ namespace _4915M
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
+        }
+
+        private void txtToyID_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void pManagement_Load(object sender, EventArgs e)

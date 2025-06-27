@@ -1,4 +1,5 @@
-﻿namespace _4915M.新文件夹
+﻿
+namespace _4915M.新文件夹
 {
     partial class AddOrder
     {
@@ -32,10 +33,10 @@
             lblCategory = new Label();
             lblBrand = new Label();
             lblDescription = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
+            txtName = new TextBox();
+            txtBrand = new TextBox();
+            txtCategory = new TextBox();
+            txtDescription = new TextBox();
             btnAdd = new Button();
             btnCancel = new Button();
             SuspendLayout();
@@ -80,38 +81,40 @@
             lblDescription.TabIndex = 3;
             lblDescription.Text = "Description";
             // 
-            // textBox1
+            // txtName
             // 
-            textBox1.Font = new Font("Microsoft YaHei UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            textBox1.Location = new Point(193, 42);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(269, 38);
-            textBox1.TabIndex = 5;
+            txtName.Font = new Font("Microsoft YaHei UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            txtName.Location = new Point(193, 42);
+            txtName.Name = "txtName";
+            txtName.Size = new Size(269, 38);
+            txtName.TabIndex = 5;
+            txtName.TextChanged += textBox1_TextChanged;
             // 
-            // textBox2
+            // txtBrand
             // 
-            textBox2.Font = new Font("Microsoft YaHei UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            textBox2.Location = new Point(193, 177);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(269, 38);
-            textBox2.TabIndex = 6;
+            txtBrand.Font = new Font("Microsoft YaHei UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            txtBrand.Location = new Point(193, 177);
+            txtBrand.Name = "txtBrand";
+            txtBrand.Size = new Size(269, 38);
+            txtBrand.TabIndex = 6;
             // 
-            // textBox3
+            // txtCategory
             // 
-            textBox3.Font = new Font("Microsoft YaHei UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            textBox3.Location = new Point(193, 106);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(269, 38);
-            textBox3.TabIndex = 7;
+            txtCategory.Font = new Font("Microsoft YaHei UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            txtCategory.Location = new Point(193, 106);
+            txtCategory.Name = "txtCategory";
+            txtCategory.Size = new Size(269, 38);
+            txtCategory.TabIndex = 7;
             // 
-            // textBox4
+            // txtDescription
             // 
-            textBox4.Font = new Font("Microsoft YaHei UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            textBox4.Location = new Point(193, 242);
-            textBox4.Multiline = true;
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(269, 125);
-            textBox4.TabIndex = 8;
+            txtDescription.Font = new Font("Microsoft YaHei UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            txtDescription.Location = new Point(193, 242);
+            txtDescription.Multiline = true;
+            txtDescription.Name = "txtDescription";
+            txtDescription.Size = new Size(269, 125);
+            txtDescription.TabIndex = 8;
+            txtDescription.TextChanged += txtDescription_TextChanged;
             // 
             // btnAdd
             // 
@@ -122,6 +125,7 @@
             btnAdd.TabIndex = 9;
             btnAdd.Text = "Confirm";
             btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
             // btnCancel
             // 
@@ -132,6 +136,7 @@
             btnCancel.TabIndex = 10;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click_1;
             // 
             // AddOrder
             // 
@@ -140,18 +145,29 @@
             ClientSize = new Size(505, 480);
             Controls.Add(btnCancel);
             Controls.Add(btnAdd);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(txtDescription);
+            Controls.Add(txtCategory);
+            Controls.Add(txtBrand);
+            Controls.Add(txtName);
             Controls.Add(lblDescription);
             Controls.Add(lblBrand);
             Controls.Add(lblCategory);
             Controls.Add(lblName);
             Name = "AddOrder";
             Text = "AddOrder";
+            Load += AddOrder_Load;
             ResumeLayout(false);
             PerformLayout();
+        }
+
+        private void AddOrder_Load(object sender, EventArgs e)
+        {
+;
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         #endregion
@@ -160,10 +176,10 @@
         private Label lblCategory;
         private Label lblBrand;
         private Label lblDescription;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
+        private TextBox txtName;
+        private TextBox txtBrand;
+        private TextBox txtCategory;
+        private TextBox txtDescription;
         private Button btnAdd;
         private Button btnCancel;
     }

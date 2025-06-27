@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
+using _4915M.新文件夹;
 using DatabaseAccessController;
 
 namespace _4915M
@@ -15,6 +16,7 @@ namespace _4915M
             InitializeComponent();
             toyOrderController = new dboToyOrderController(connectionString);
             LoadToysForCustomer(currentCustomerID);
+
         }
         private void LoadToysForCustomer(int customerID)
         {
@@ -77,6 +79,12 @@ namespace _4915M
             {
                 MessageBox.Show("Please select a row to delete.");
             }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            AddOrder addOrderForm = new AddOrder();
+            addOrderForm.ShowDialog();
         }
     }
 }

@@ -16,5 +16,10 @@ namespace _4915M.新文件夹
         {
             InitializeComponent();
         }
+
+        private void OrderModify_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
