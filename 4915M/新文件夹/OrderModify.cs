@@ -8,15 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace _4915M
+namespace _4915M.新文件夹
 {
-    public partial class pManagement : Form
+    public partial class OrderModify : Form
     {
-        public pManagement()
+        public OrderModify()
         {
             InitializeComponent();
         }
-
-        
     }
 }

@@ -39,7 +39,7 @@ namespace _4915M
             btnDelete = new Button();
             btnModify = new Button();
             btnrefresh = new Button();
-            textBox1 = new TextBox();
+            txtToyID = new TextBox();
             btnSearch = new Button();
             mySqlDataAdapter1 = new MySqlConnector.MySqlDataAdapter();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -124,13 +124,13 @@ namespace _4915M
             btnrefresh.UseVisualStyleBackColor = true;
             btnrefresh.Click += button4_Click;
             // 
-            // textBox1
+            // txtToyID
             // 
-            textBox1.Font = new Font("Microsoft YaHei UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            textBox1.Location = new Point(571, 311);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(176, 38);
-            textBox1.TabIndex = 5;
+            txtToyID.Font = new Font("Microsoft YaHei UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            txtToyID.Location = new Point(571, 311);
+            txtToyID.Name = "txtToyID";
+            txtToyID.Size = new Size(176, 38);
+            txtToyID.TabIndex = 5;
             // 
             // btnSearch
             // 
@@ -158,7 +158,7 @@ namespace _4915M
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(998, 501);
             Controls.Add(btnSearch);
-            Controls.Add(textBox1);
+            Controls.Add(txtToyID);
             Controls.Add(btnrefresh);
             Controls.Add(btnModify);
             Controls.Add(btnDelete);
@@ -209,7 +209,7 @@ namespace _4915M
         private Button btnDelete;
         private Button btnModify;
         private Button btnrefresh;
-        private TextBox textBox1;
+        private TextBox txtToyID;
         private Button btnSearch;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
