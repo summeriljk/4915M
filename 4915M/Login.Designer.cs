@@ -162,7 +162,7 @@ namespace _4915M
             ForeColor = SystemColors.ControlText;
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form1";
+            Text = "Login System";
             Load += Login_Load;
             ResumeLayout(false);
             PerformLayout();

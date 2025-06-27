@@ -2,16 +2,22 @@ using System;
 using System.Windows.Forms;
 using DatabaseAccessController;
 using Microsoft.Extensions.Configuration;
-using System.Data; 
+using System.Data;
 using MySql.Data.MySqlClient;
 
 namespace _4915M
 {
     public partial class Login : Form
     {
+        private readonly IConfiguration _configuration;
+
         public Login()
         {
             InitializeComponent();
+            var builder = new ConfigurationBuilder()
+               .SetBasePath(Directory.GetCurrentDirectory())
+               .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            _configuration = builder.Build();
         }
 
         private void txtPassword_TextChanged(object sender, EventArgs e)
@@ -23,22 +29,39 @@ namespace _4915M
         {
             if (txtUName.Text != "" && txtPsw.Text != "")
             {
-                string connectionString = "your_connection_string_here";
+                string connectionString = _configuration.GetConnectionString("DefaultConnection");
+                if (string.IsNullOrEmpty(connectionString))
+                {
+                    MessageBox.Show("Connection string is not configured correctly.");
+                    return;
+                }
+
                 dboUserLoginVerification loginVerifier = new dboUserLoginVerification(connectionString);
 
                 string username = txtUName.Text;
                 string password = txtPsw.Text;
                 bool isUser = IsUser();
 
-                bool isAuthenticated = loginVerifier.VerifyUserLogin(username, password, isUser);
+                try
+                {
+                    bool isAuthenticated = loginVerifier.VerifyUserLogin(username, password, isUser);
 
-                if (isAuthenticated)
-                {
-                    MessageBox.Show("Login successful");
+                    if (isAuthenticated)
+                    {
+                        MessageBox.Show("Login successful");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Username or password is incorrect");
+                    }
                 }
-                else
+                catch (ArgumentException ex)
                 {
-                    MessageBox.Show("Username or password is incorrect");
+                    MessageBox.Show($"Invalid connection string: {ex.Message}");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred: {ex.Message}");
                 }
             }
         }

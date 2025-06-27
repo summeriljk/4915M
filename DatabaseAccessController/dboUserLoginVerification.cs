@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System.Data;
+using System;
 
 namespace DatabaseAccessController
 {
@@ -21,6 +22,7 @@ namespace DatabaseAccessController
             {
                 try
                 {
+                    System.Diagnostics.Debug.WriteLine($"Connection String: {connectionString}");
                     conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand(sqlCmd, conn))
                     {
@@ -30,8 +32,14 @@ namespace DatabaseAccessController
                         return count > 0;
                     }
                 }
-                catch (Exception )
+                catch (ArgumentException ex)
                 {
+                    System.Diagnostics.Debug.WriteLine($"Invalid connection string: {ex.Message}");
+                    throw;
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine($"An error occurred: {ex.Message}");
                     throw;
                 }
             }
