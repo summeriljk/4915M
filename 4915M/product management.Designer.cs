@@ -30,17 +30,18 @@ namespace _4915M
         private void InitializeComponent()
         {
             dataGridView1 = new DataGridView();
+            Column1 = new DataGridViewTextBoxColumn();
+            Column2 = new DataGridViewTextBoxColumn();
+            Column3 = new DataGridViewTextBoxColumn();
+            Column4 = new DataGridViewTextBoxColumn();
+            Column5 = new DataGridViewTextBoxColumn();
             btnAdd = new Button();
             btnDelete = new Button();
             btnModify = new Button();
             btnrefresh = new Button();
             textBox1 = new TextBox();
             btnSearch = new Button();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewTextBoxColumn();
-            Column4 = new DataGridViewTextBoxColumn();
-            Column5 = new DataGridViewTextBoxColumn();
+            mySqlDataAdapter1 = new MySqlConnector.MySqlDataAdapter();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -53,69 +54,7 @@ namespace _4915M
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.Size = new Size(506, 476);
             dataGridView1.TabIndex = 0;
-            dataGridView1.CellContentClick += this.dataGridView1_CellContentClick;
-            // 
-            // btnAdd
-            // 
-            btnAdd.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            btnAdd.Location = new Point(581, 48);
-            btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(149, 68);
-            btnAdd.TabIndex = 1;
-            btnAdd.Text = "Add product order";
-            btnAdd.UseVisualStyleBackColor = true;
-            btnAdd.Click += this.button1_Click;
-            // 
-            // btnDelete
-            // 
-            btnDelete.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            btnDelete.Location = new Point(762, 48);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(149, 68);
-            btnDelete.TabIndex = 2;
-            btnDelete.Text = "Delete product order";
-            btnDelete.UseVisualStyleBackColor = true;
-            // 
-            // btnModify
-            // 
-            btnModify.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            btnModify.Location = new Point(581, 185);
-            btnModify.Name = "btnModify";
-            btnModify.Size = new Size(149, 68);
-            btnModify.TabIndex = 3;
-            btnModify.Text = "Modify order information";
-            btnModify.UseVisualStyleBackColor = true;
-            // 
-            // btnrefresh
-            // 
-            btnrefresh.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            btnrefresh.Location = new Point(762, 185);
-            btnrefresh.Name = "btnrefresh";
-            btnrefresh.Size = new Size(149, 68);
-            btnrefresh.TabIndex = 4;
-            btnrefresh.Text = "Refresh";
-            btnrefresh.UseVisualStyleBackColor = true;
-            btnrefresh.Click += this.button4_Click;
-            // 
-            // textBox1
-            // 
-            textBox1.Font = new Font("Microsoft YaHei UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            textBox1.Location = new Point(571, 311);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(176, 38);
-            textBox1.TabIndex = 5;
-            // 
-            // btnSearch
-            // 
-            btnSearch.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            btnSearch.Location = new Point(762, 299);
-            btnSearch.Name = "btnSearch";
-            btnSearch.RightToLeft = RightToLeft.Yes;
-            btnSearch.Size = new Size(149, 68);
-            btnSearch.TabIndex = 6;
-            btnSearch.Text = "Order inquiry";
-            btnSearch.UseVisualStyleBackColor = true;
-            btnSearch.Click += this.button1_Click_1;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // Column1
             // 
@@ -142,6 +81,77 @@ namespace _4915M
             Column5.HeaderText = "inventory";
             Column5.Name = "Column5";
             // 
+            // btnAdd
+            // 
+            btnAdd.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 134);
+            btnAdd.Location = new Point(581, 48);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(149, 68);
+            btnAdd.TabIndex = 1;
+            btnAdd.Text = "Add product order";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += button1_Click;
+            // 
+            // btnDelete
+            // 
+            btnDelete.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 134);
+            btnDelete.Location = new Point(762, 48);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(149, 68);
+            btnDelete.TabIndex = 2;
+            btnDelete.Text = "Delete product order";
+            btnDelete.UseVisualStyleBackColor = true;
+            // 
+            // btnModify
+            // 
+            btnModify.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 134);
+            btnModify.Location = new Point(581, 185);
+            btnModify.Name = "btnModify";
+            btnModify.Size = new Size(149, 68);
+            btnModify.TabIndex = 3;
+            btnModify.Text = "Modify order information";
+            btnModify.UseVisualStyleBackColor = true;
+            btnModify.Click += btnModify_Click;
+            // 
+            // btnrefresh
+            // 
+            btnrefresh.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 134);
+            btnrefresh.Location = new Point(762, 185);
+            btnrefresh.Name = "btnrefresh";
+            btnrefresh.Size = new Size(149, 68);
+            btnrefresh.TabIndex = 4;
+            btnrefresh.Text = "Refresh";
+            btnrefresh.UseVisualStyleBackColor = true;
+            btnrefresh.Click += button4_Click;
+            // 
+            // textBox1
+            // 
+            textBox1.Font = new Font("Microsoft YaHei UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            textBox1.Location = new Point(571, 311);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(176, 38);
+            textBox1.TabIndex = 5;
+            // 
+            // btnSearch
+            // 
+            btnSearch.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 134);
+            btnSearch.Location = new Point(762, 299);
+            btnSearch.Name = "btnSearch";
+            btnSearch.RightToLeft = RightToLeft.Yes;
+            btnSearch.Size = new Size(149, 68);
+            btnSearch.TabIndex = 6;
+            btnSearch.Text = "Order inquiry";
+            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += button1_Click_1;
+            // 
+            // mySqlDataAdapter1
+            // 
+            mySqlDataAdapter1.DeleteCommand = null;
+            mySqlDataAdapter1.InsertCommand = null;
+            mySqlDataAdapter1.SelectCommand = null;
+            mySqlDataAdapter1.UpdateBatchSize = 0;
+            mySqlDataAdapter1.UpdateCommand = null;
+            // 
             // pManagement
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -156,16 +166,17 @@ namespace _4915M
             Controls.Add(dataGridView1);
             Name = "pManagement";
             Text = "Product Management";
-            Load += this.pManagement_Load;
+            Load += pManagement_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
-        private void pManagement_Load(object sender, EventArgs e)
+        private void btnModify_Click(object sender, EventArgs e)
         {
             throw new NotImplementedException();
         }
+
 
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -201,5 +212,6 @@ namespace _4915M
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column4;
         private DataGridViewTextBoxColumn Column5;
+        private MySqlConnector.MySqlDataAdapter mySqlDataAdapter1;
     }
 }
