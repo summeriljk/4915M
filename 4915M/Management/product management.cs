@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
+using _4915M.Management;
 using _4915M.新文件夹;
 using DatabaseAccessController;
 
@@ -91,6 +92,24 @@ namespace _4915M
         public void RefreshOrders()
         {
             LoadToysForCustomer(currentCustomerID);
+        }
+
+        private void btnModify_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                int toyID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["ToyID"].Value);
+
+                OrderModify modifyForm = new OrderModify(this);
+
+                modifyForm.SetToyID(toyID);
+
+                modifyForm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please select a row to modify.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

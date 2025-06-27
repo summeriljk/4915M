@@ -34,12 +34,12 @@
             txtBrand = new TextBox();
             txtCategory = new TextBox();
             txtQuantity = new TextBox();
-            txtTname = new TextBox();
-            rbtDescription = new RadioButton();
-            rbtQuantity = new RadioButton();
-            rbtBrand = new RadioButton();
-            rbtCategory = new RadioButton();
+            txtTID = new TextBox();
             lblTID = new Label();
+            chbCategory = new CheckBox();
+            chbDescription = new CheckBox();
+            chbQuantity = new CheckBox();
+            chbBrand = new CheckBox();
             SuspendLayout();
             // 
             // btnCancel
@@ -71,6 +71,7 @@
             txtDescription.Name = "txtDescription";
             txtDescription.Size = new Size(276, 38);
             txtDescription.TabIndex = 21;
+            txtDescription.TextChanged += txtDescription_TextChanged;
             // 
             // txtBrand
             // 
@@ -96,61 +97,13 @@
             txtQuantity.Size = new Size(276, 38);
             txtQuantity.TabIndex = 18;
             // 
-            // txtTname
+            // txtTID
             // 
-            txtTname.Font = new Font("Microsoft YaHei UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            txtTname.Location = new Point(298, 32);
-            txtTname.Name = "txtTname";
-            txtTname.Size = new Size(276, 38);
-            txtTname.TabIndex = 12;
-            // 
-            // rbtDescription
-            // 
-            rbtDescription.AutoSize = true;
-            rbtDescription.Font = new Font("Microsoft YaHei UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            rbtDescription.Location = new Point(98, 287);
-            rbtDescription.Name = "rbtDescription";
-            rbtDescription.Size = new Size(171, 35);
-            rbtDescription.TabIndex = 25;
-            rbtDescription.TabStop = true;
-            rbtDescription.Text = "Description";
-            rbtDescription.UseVisualStyleBackColor = true;
-            // 
-            // rbtQuantity
-            // 
-            rbtQuantity.AutoSize = true;
-            rbtQuantity.Font = new Font("Microsoft YaHei UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            rbtQuantity.Location = new Point(98, 228);
-            rbtQuantity.Name = "rbtQuantity";
-            rbtQuantity.Size = new Size(139, 35);
-            rbtQuantity.TabIndex = 26;
-            rbtQuantity.TabStop = true;
-            rbtQuantity.Text = "Quantity";
-            rbtQuantity.UseVisualStyleBackColor = true;
-            // 
-            // rbtBrand
-            // 
-            rbtBrand.AutoSize = true;
-            rbtBrand.Font = new Font("Microsoft YaHei UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            rbtBrand.Location = new Point(98, 169);
-            rbtBrand.Name = "rbtBrand";
-            rbtBrand.Size = new Size(104, 35);
-            rbtBrand.TabIndex = 27;
-            rbtBrand.TabStop = true;
-            rbtBrand.Text = "Brand";
-            rbtBrand.UseVisualStyleBackColor = true;
-            // 
-            // rbtCategory
-            // 
-            rbtCategory.AutoSize = true;
-            rbtCategory.Font = new Font("Microsoft YaHei UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            rbtCategory.Location = new Point(98, 100);
-            rbtCategory.Name = "rbtCategory";
-            rbtCategory.Size = new Size(142, 35);
-            rbtCategory.TabIndex = 28;
-            rbtCategory.TabStop = true;
-            rbtCategory.Text = "Category";
-            rbtCategory.UseVisualStyleBackColor = true;
+            txtTID.Font = new Font("Microsoft YaHei UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            txtTID.Location = new Point(298, 32);
+            txtTID.Name = "txtTID";
+            txtTID.Size = new Size(276, 38);
+            txtTID.TabIndex = 12;
             // 
             // lblTID
             // 
@@ -162,23 +115,68 @@
             lblTID.TabIndex = 29;
             lblTID.Text = "Toy ID";
             // 
+            // chbCategory
+            // 
+            chbCategory.AutoSize = true;
+            chbCategory.Font = new Font("Microsoft YaHei UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 134);
+            chbCategory.Location = new Point(71, 99);
+            chbCategory.Name = "chbCategory";
+            chbCategory.Size = new Size(143, 35);
+            chbCategory.TabIndex = 30;
+            chbCategory.Text = "Category";
+            chbCategory.UseVisualStyleBackColor = true;
+            // 
+            // chbDescription
+            // 
+            this.chbDescription.AutoSize = true;
+            this.chbDescription.Font = new Font("Microsoft YaHei UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 134);
+            this.chbDescription.Location = new Point(71, 287);
+            this.chbDescription.Name = "chbDescription";
+            this.chbDescription.Size = new Size(172, 35);
+            this.chbDescription.TabIndex = 31;
+            this.chbDescription.Text = "Description";
+            this.chbDescription.UseVisualStyleBackColor = true;
+            this.chbDescription.CheckedChanged += this.checkBox1_CheckedChanged;
+            // 
+            // chbQuantity
+            // 
+            chbQuantity.AutoSize = true;
+            chbQuantity.Font = new Font("Microsoft YaHei UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 134);
+            chbQuantity.Location = new Point(74, 228);
+            chbQuantity.Name = "chbQuantity";
+            chbQuantity.Size = new Size(140, 35);
+            chbQuantity.TabIndex = 32;
+            chbQuantity.Text = "Quantity";
+            chbQuantity.UseVisualStyleBackColor = true;
+            // 
+            // chbBrand
+            // 
+            chbBrand.AutoSize = true;
+            chbBrand.Font = new Font("Microsoft YaHei UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 134);
+            chbBrand.Location = new Point(71, 169);
+            chbBrand.Name = "chbBrand";
+            chbBrand.Size = new Size(105, 35);
+            chbBrand.TabIndex = 33;
+            chbBrand.Text = "Brand";
+            chbBrand.UseVisualStyleBackColor = true;
+            // 
             // OrderModify
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 568);
+            Controls.Add(chbBrand);
+            Controls.Add(chbQuantity);
+            Controls.Add(this.chbDescription);
+            Controls.Add(chbCategory);
             Controls.Add(lblTID);
-            Controls.Add(rbtCategory);
-            Controls.Add(rbtBrand);
-            Controls.Add(rbtQuantity);
-            Controls.Add(rbtDescription);
             Controls.Add(btnCancel);
             Controls.Add(btnAdd);
             Controls.Add(txtDescription);
             Controls.Add(txtBrand);
             Controls.Add(txtCategory);
             Controls.Add(txtQuantity);
-            Controls.Add(txtTname);
+            Controls.Add(txtTID);
             Name = "OrderModify";
             Text = "OrderModify";
             Load += OrderModify_Load;
@@ -194,11 +192,14 @@
         private TextBox txtBrand;
         private TextBox txtCategory;
         private TextBox txtQuantity;
-        private TextBox txtTname;
-        private RadioButton rbtDescription;
+        private TextBox txtTID;
         private RadioButton rbtQuantity;
         private RadioButton rbtBrand;
-        private RadioButton rbtCategory;
         private Label lblTID;
+        private CheckBox chbCategory;
+        private CheckBox chbDescription;
+        private CheckBox checkBox1;
+        private CheckBox chbQuantity;
+        private CheckBox chbBrand;
     }
 }
