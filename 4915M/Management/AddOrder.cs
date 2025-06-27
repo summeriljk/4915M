@@ -42,5 +42,10 @@ namespace _4915M.新文件夹
         {
 
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

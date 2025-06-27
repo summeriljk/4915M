@@ -39,6 +39,8 @@ namespace _4915M.新文件夹
             txtDescription = new TextBox();
             btnAdd = new Button();
             btnCancel = new Button();
+            lblQuantity = new Label();
+            textBox1 = new TextBox();
             SuspendLayout();
             // 
             // lblName
@@ -75,7 +77,7 @@ namespace _4915M.新文件夹
             // 
             lblDescription.AutoSize = true;
             lblDescription.Font = new Font("Microsoft YaHei UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            lblDescription.Location = new Point(2, 239);
+            lblDescription.Location = new Point(12, 328);
             lblDescription.Name = "lblDescription";
             lblDescription.Size = new Size(185, 39);
             lblDescription.TabIndex = 3;
@@ -109,17 +111,17 @@ namespace _4915M.新文件夹
             // txtDescription
             // 
             txtDescription.Font = new Font("Microsoft YaHei UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            txtDescription.Location = new Point(193, 242);
+            txtDescription.Location = new Point(193, 328);
             txtDescription.Multiline = true;
             txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(269, 125);
+            txtDescription.Size = new Size(269, 200);
             txtDescription.TabIndex = 8;
             txtDescription.TextChanged += txtDescription_TextChanged;
             // 
             // btnAdd
             // 
             btnAdd.Font = new Font("Microsoft YaHei UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            btnAdd.Location = new Point(26, 397);
+            btnAdd.Location = new Point(26, 554);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(183, 57);
             btnAdd.TabIndex = 9;
@@ -130,7 +132,7 @@ namespace _4915M.新文件夹
             // btnCancel
             // 
             btnCancel.Font = new Font("Microsoft YaHei UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            btnCancel.Location = new Point(279, 397);
+            btnCancel.Location = new Point(279, 554);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(183, 57);
             btnCancel.TabIndex = 10;
@@ -138,11 +140,32 @@ namespace _4915M.新文件夹
             btnCancel.UseVisualStyleBackColor = true;
             btnCancel.Click += btnCancel_Click_1;
             // 
+            // lblQuantity
+            // 
+            lblQuantity.AutoSize = true;
+            lblQuantity.Font = new Font("Microsoft YaHei UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 134);
+            lblQuantity.Location = new Point(41, 254);
+            lblQuantity.Name = "lblQuantity";
+            lblQuantity.Size = new Size(146, 39);
+            lblQuantity.TabIndex = 11;
+            lblQuantity.Text = "Quantity";
+            lblQuantity.Click += label1_Click;
+            // 
+            // textBox1
+            // 
+            textBox1.Font = new Font("Microsoft YaHei UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            textBox1.Location = new Point(193, 257);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(269, 38);
+            textBox1.TabIndex = 12;
+            // 
             // AddOrder
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(505, 480);
+            ClientSize = new Size(505, 681);
+            Controls.Add(textBox1);
+            Controls.Add(lblQuantity);
             Controls.Add(btnCancel);
             Controls.Add(btnAdd);
             Controls.Add(txtDescription);
@@ -182,5 +205,7 @@ namespace _4915M.新文件夹
         private TextBox txtDescription;
         private Button btnAdd;
         private Button btnCancel;
+        private Label lblQuantity;
+        private TextBox textBox1;
     }
 }
