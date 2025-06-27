@@ -9,15 +9,10 @@ namespace _4915M
 {
     public partial class Login : Form
     {
-        private readonly IConfiguration _configuration;
-
         public Login()
         {
             InitializeComponent();
-            var builder = new ConfigurationBuilder()
-               .SetBasePath(Directory.GetCurrentDirectory())
-               .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-            _configuration = builder.Build();
+            txtPsw.UseSystemPasswordChar = true;
         }
 
         private void txtPassword_TextChanged(object sender, EventArgs e)
@@ -29,7 +24,7 @@ namespace _4915M
         {
             if (txtUName.Text != "" && txtPsw.Text != "")
             {
-                string connectionString = _configuration.GetConnectionString("DefaultConnection");
+                string connectionString = "server=localhost;port=3306;user id=root;password=;database=company;charset=utf8;";
                 dboUserLoginVerification loginVerifier = new dboUserLoginVerification(connectionString);
 
                 string username = txtUName.Text;
@@ -41,9 +36,6 @@ namespace _4915M
                 if (isAuthenticated)
                 {
                     MessageBox.Show("Login successful");
-                    this.Hide();
-                    pManagement pManagement = new pManagement();
-                    pManagement.Show();
                 }
                 else
                 {

@@ -170,7 +170,7 @@ namespace _4915M
 
         private void rbtUser_CheckedChanged(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+          
         }
 
         private void Login_Load(object sender, EventArgs e)
