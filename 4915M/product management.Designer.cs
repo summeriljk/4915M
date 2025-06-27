@@ -172,30 +172,34 @@ namespace _4915M
             PerformLayout();
         }
 
+        private void pManagement_Load(object sender, EventArgs e)
+        {
+        }
+
         private void btnModify_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+
         }
 
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            throw new NotImplementedException();
+
         }
 
         #endregion
