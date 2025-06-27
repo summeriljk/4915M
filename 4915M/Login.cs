@@ -30,38 +30,24 @@ namespace _4915M
             if (txtUName.Text != "" && txtPsw.Text != "")
             {
                 string connectionString = _configuration.GetConnectionString("DefaultConnection");
-                if (string.IsNullOrEmpty(connectionString))
-                {
-                    MessageBox.Show("Connection string is not configured correctly.");
-                    return;
-                }
-
                 dboUserLoginVerification loginVerifier = new dboUserLoginVerification(connectionString);
 
                 string username = txtUName.Text;
                 string password = txtPsw.Text;
                 bool isUser = IsUser();
 
-                try
-                {
-                    bool isAuthenticated = loginVerifier.VerifyUserLogin(username, password, isUser);
+                bool isAuthenticated = loginVerifier.VerifyUserLogin(username, password, isUser);
 
-                    if (isAuthenticated)
-                    {
-                        MessageBox.Show("Login successful");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Username or password is incorrect");
-                    }
-                }
-                catch (ArgumentException ex)
+                if (isAuthenticated)
                 {
-                    MessageBox.Show($"Invalid connection string: {ex.Message}");
+                    MessageBox.Show("Login successful");
+                    this.Hide();
+                    pManagement pManagement = new pManagement();
+                    pManagement.Show();
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show($"An error occurred: {ex.Message}");
+                    MessageBox.Show("Username or password is incorrect");
                 }
             }
         }
