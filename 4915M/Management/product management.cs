@@ -11,13 +11,14 @@ namespace _4915M
         private string connectionString = "server=localhost;port=3306;user id=root;password=;database=company;charset=utf8;";
         private dboToyOrderController toyOrderController;
         private int currentCustomerID = 1;
+
         public pManagement()
         {
             InitializeComponent();
             toyOrderController = new dboToyOrderController(connectionString);
             LoadToysForCustomer(currentCustomerID);
-
         }
+
         private void LoadToysForCustomer(int customerID)
         {
             try
@@ -83,8 +84,13 @@ namespace _4915M
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            AddOrder addOrderForm = new AddOrder();
+            AddOrder addOrderForm = new AddOrder(this, currentCustomerID);
             addOrderForm.ShowDialog();
+        }
+
+        public void RefreshOrders()
+        {
+            LoadToysForCustomer(currentCustomerID);
         }
     }
 }
