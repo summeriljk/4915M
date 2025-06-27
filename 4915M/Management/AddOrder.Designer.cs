@@ -206,6 +206,6 @@ namespace _4915M.新文件夹
         private Button btnAdd;
         private Button btnCancel;
         private Label lblQuantity;
-        private TextBox textBox1;
+        private TextBox txtQuantity;
     }
 }

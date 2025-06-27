@@ -70,5 +70,24 @@ namespace DatabaseAccessController
                 }
             }
         }
+        public object GetScalarValue(string sqlCmd, params MySqlParameter[] parameters)
+        {
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(sqlCmd, conn))
+                    {
+                        cmd.Parameters.AddRange(parameters);
+                        return cmd.ExecuteScalar();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
     }
 }

@@ -150,5 +150,10 @@ namespace DatabaseAccessController
                 }
             }
         }
+
+        public bool GetScalarValue(string getCustomerIdSql, MySqlParameter mySqlParameter)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
