@@ -35,7 +35,20 @@ namespace _4915M
 
                 if (isAuthenticated)
                 {
-                    MessageBox.Show("Login successful");
+                    if (isUser)
+                    {
+                        pManagement customerForm = new pManagement();
+                        this.Hide();
+                        customerForm.ShowDialog();
+                        this.Show();
+                    }
+                    else
+                    {
+                        AdminMainForm adminForm = new AdminMainForm();
+                        this.Hide();
+                        adminForm.ShowDialog();
+                        this.Show();
+                    }
                 }
                 else
                 {
