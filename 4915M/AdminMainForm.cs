@@ -27,5 +27,11 @@ namespace _4915M
             ShippingForm shippingForm = new ShippingForm();
             shippingForm.ShowDialog();
         }
+
+        private void btnMaterialProcurement_Click(object sender, EventArgs e)
+        {
+            MaterialProcurementForm materialProcurementForm = new MaterialProcurementForm();
+            materialProcurementForm.ShowDialog();
+        }
     }
 }

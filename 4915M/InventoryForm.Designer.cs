@@ -45,41 +45,42 @@
             dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(5, 26);
+            dataGridView1.Location = new Point(446, 47);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(783, 395);
+            dataGridView1.Size = new Size(529, 206);
             dataGridView1.TabIndex = 0;
             // 
             // groupBox1
             // 
             groupBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             groupBox1.Controls.Add(btnSubmit);
+            groupBox1.Controls.Add(dataGridView1);
             groupBox1.Controls.Add(txtReason);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(numericUpDownAdjustment);
             groupBox1.Controls.Add(label1);
             groupBox1.Location = new Point(21, 49);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(699, 261);
+            groupBox1.Size = new Size(981, 358);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "inventory";
             // 
             // btnSubmit
             // 
-            btnSubmit.Location = new Point(208, 197);
+            btnSubmit.Location = new Point(167, 288);
             btnSubmit.Name = "btnSubmit";
-            btnSubmit.Size = new Size(149, 29);
+            btnSubmit.Size = new Size(292, 29);
             btnSubmit.TabIndex = 4;
             btnSubmit.Text = "submit";
             btnSubmit.UseVisualStyleBackColor = true;
             // 
             // txtReason
             // 
-            txtReason.Location = new Point(247, 127);
+            txtReason.Location = new Point(259, 192);
             txtReason.Name = "txtReason";
             txtReason.Size = new Size(125, 27);
             txtReason.TabIndex = 3;
@@ -87,7 +88,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(22, 130);
+            label2.Location = new Point(24, 195);
             label2.Name = "label2";
             label2.Size = new Size(173, 20);
             label2.TabIndex = 2;
@@ -95,7 +96,7 @@
             // 
             // numericUpDownAdjustment
             // 
-            numericUpDownAdjustment.Location = new Point(247, 62);
+            numericUpDownAdjustment.Location = new Point(259, 114);
             numericUpDownAdjustment.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             numericUpDownAdjustment.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
             numericUpDownAdjustment.Name = "numericUpDownAdjustment";
@@ -105,7 +106,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(67, 69);
+            label1.Location = new Point(59, 121);
             label1.Name = "label1";
             label1.Size = new Size(69, 20);
             label1.TabIndex = 0;
@@ -115,9 +116,8 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1082, 450);
             Controls.Add(groupBox1);
-            Controls.Add(dataGridView1);
             Name = "InventoryForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Inventory";

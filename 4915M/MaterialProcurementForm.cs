@@ -1,0 +1,79 @@
+﻿using System;
+using System.Data;
+using System.Windows.Forms;
+using DatabaseAccessController;
+
+namespace _4915M
+{
+    public partial class MaterialProcurementForm : Form
+    {
+        private string connectionString = "server=localhost;port=3306;user id=root;password=;database=company;charset=utf8;";
+        private dboMaterialProcurementController procurementController;
+
+        public MaterialProcurementForm()
+        {
+            InitializeComponent();
+            procurementController = new dboMaterialProcurementController(connectionString);
+            LoadProcurementOrders();
+        }
+
+        private void LoadProcurementOrders()
+        {
+            try
+            {
+                DataTable procurementData = procurementController.GetAllProcurementOrders();
+                dataGridView1.DataSource = procurementData;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading procurement orders: {ex.Message}");
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string searchTerm = txtSearch.Text;
+
+            try
+            {
+                DataTable searchResult = procurementController.SearchProcurementOrders(searchTerm);
+                dataGridView1.DataSource = searchResult;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error searching procurement orders: {ex.Message}");
+            }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            LoadProcurementOrders();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            AddProcurementOrder addOrderForm = new AddProcurementOrder(this);
+            addOrderForm.ShowDialog();
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                int orderID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["OrderID"].Value);
+
+                EditProcurementOrder editOrderForm = new EditProcurementOrder(this, orderID);
+                editOrderForm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please select a row to edit.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        public void RefreshProcurementOrders()
+        {
+            LoadProcurementOrders();
+        }
+    }
+}

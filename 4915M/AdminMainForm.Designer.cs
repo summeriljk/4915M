@@ -18,43 +18,63 @@
 
         private void InitializeComponent()
         {
-            this.btnAfterSales = new System.Windows.Forms.Button();
-            this.btnInventory = new System.Windows.Forms.Button();
-            this.btnShipping = new System.Windows.Forms.Button();
-            this.SuspendLayout();
-
-            this.btnAfterSales.Location = new System.Drawing.Point(20, 20);
-            this.btnAfterSales.Name = "btnAfterSales";
-            this.btnAfterSales.Size = new System.Drawing.Size(500, 400);
-            this.btnAfterSales.TabIndex = 0;
-            this.btnAfterSales.Text = "After Sales Service";
-            this.btnAfterSales.UseVisualStyleBackColor = true;
-            this.btnAfterSales.Click += new System.EventHandler(this.btnAfterSales_Click);
- 
-            this.btnInventory.Location = new System.Drawing.Point(20, 80);
-            this.btnInventory.Name = "btnInventory";
-            this.btnInventory.Size = new System.Drawing.Size(500, 400);
-            this.btnInventory.TabIndex = 1;
-            this.btnInventory.Text = "Inventory Management";
-            this.btnInventory.UseVisualStyleBackColor = true;
-            this.btnInventory.Click += new System.EventHandler(this.btnInventory_Click);
-
-            this.btnShipping.Location = new System.Drawing.Point(20, 140);
-            this.btnShipping.Name = "btnShipping";
-            this.btnShipping.Size = new System.Drawing.Size(500, 400);
-            this.btnShipping.TabIndex = 2;
-            this.btnShipping.Text = "Shipping Management";
-            this.btnShipping.UseVisualStyleBackColor = true;
-            this.btnShipping.Click += new System.EventHandler(this.btnShipping_Click);
-
-            this.ClientSize = new System.Drawing.Size(800, 600);
-            this.Controls.Add(this.btnShipping);
-            this.Controls.Add(this.btnInventory);
-            this.Controls.Add(this.btnAfterSales);
-            this.Name = "AdminMainForm";
-            this.Text = "Admin Main Form";
-            this.ResumeLayout(false);
+            btnAfterSales = new Button();
+            btnInventory = new Button();
+            btnShipping = new Button();
+            btnMaterialProcurement = new Button();
+            SuspendLayout();
+            // 
+            // btnAfterSales
+            // 
+            btnAfterSales.Location = new Point(330, 30);
+            btnAfterSales.Name = "btnAfterSales";
+            btnAfterSales.Size = new Size(500, 86);
+            btnAfterSales.TabIndex = 0;
+            btnAfterSales.Text = "After Sales Service";
+            btnAfterSales.UseVisualStyleBackColor = true;
+            btnAfterSales.Click += btnAfterSales_Click;
+            // 
+            // btnInventory
+            // 
+            btnInventory.Location = new Point(330, 153);
+            btnInventory.Name = "btnInventory";
+            btnInventory.Size = new Size(500, 83);
+            btnInventory.TabIndex = 1;
+            btnInventory.Text = "Inventory Management";
+            btnInventory.UseVisualStyleBackColor = true;
+            btnInventory.Click += btnInventory_Click;
+            // 
+            // btnShipping
+            // 
+            btnShipping.Location = new Point(330, 292);
+            btnShipping.Name = "btnShipping";
+            btnShipping.Size = new Size(500, 75);
+            btnShipping.TabIndex = 2;
+            btnShipping.Text = "Shipping Management";
+            btnShipping.UseVisualStyleBackColor = true;
+            btnShipping.Click += btnShipping_Click;
+            // 
+            // btnMaterialProcurement
+            // 
+            btnMaterialProcurement.Location = new Point(330, 424);
+            btnMaterialProcurement.Name = "btnMaterialProcurement";
+            btnMaterialProcurement.Size = new Size(500, 75);
+            btnMaterialProcurement.TabIndex = 3;
+            btnMaterialProcurement.Text = "MaterialProcurement";
+            btnMaterialProcurement.UseVisualStyleBackColor = true;
+            // 
+            // AdminMainForm
+            // 
+            ClientSize = new Size(1177, 600);
+            Controls.Add(btnMaterialProcurement);
+            Controls.Add(btnShipping);
+            Controls.Add(btnInventory);
+            Controls.Add(btnAfterSales);
+            Name = "AdminMainForm";
+            Text = "Admin Main Form";
+            ResumeLayout(false);
 
         }
+        private Button btnMaterialProcurement;
     }
 }
