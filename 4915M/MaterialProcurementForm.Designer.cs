@@ -46,11 +46,11 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4 });
             dataGridView1.Location = new Point(15, 14);
-            dataGridView1.Margin = new Padding(4, 4, 4, 4);
+            dataGridView1.Margin = new Padding(4);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(643, 560);
+            dataGridView1.Size = new Size(595, 560);
             dataGridView1.TabIndex = 0;
             // 
             // Column1
@@ -85,7 +85,7 @@
             // 
             btnAdd.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 134);
             btnAdd.Location = new Point(747, 56);
-            btnAdd.Margin = new Padding(4, 4, 4, 4);
+            btnAdd.Margin = new Padding(4);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(192, 80);
             btnAdd.TabIndex = 1;
@@ -97,7 +97,7 @@
             // 
             btnEdit.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 134);
             btnEdit.Location = new Point(980, 56);
-            btnEdit.Margin = new Padding(4, 4, 4, 4);
+            btnEdit.Margin = new Padding(4);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(192, 80);
             btnEdit.TabIndex = 2;
@@ -109,7 +109,7 @@
             // 
             btnRefresh.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 134);
             btnRefresh.Location = new Point(980, 218);
-            btnRefresh.Margin = new Padding(4, 4, 4, 4);
+            btnRefresh.Margin = new Padding(4);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(192, 80);
             btnRefresh.TabIndex = 3;
@@ -121,7 +121,7 @@
             // 
             txtSearch.Font = new Font("Microsoft YaHei UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 134);
             txtSearch.Location = new Point(714, 366);
-            txtSearch.Margin = new Padding(4, 4, 4, 4);
+            txtSearch.Margin = new Padding(4);
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(225, 46);
             txtSearch.TabIndex = 4;
@@ -130,7 +130,7 @@
             // 
             btnSearch.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 134);
             btnSearch.Location = new Point(980, 352);
-            btnSearch.Margin = new Padding(4, 4, 4, 4);
+            btnSearch.Margin = new Padding(4);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(192, 80);
             btnSearch.TabIndex = 5;
@@ -149,7 +149,7 @@
             Controls.Add(btnEdit);
             Controls.Add(btnAdd);
             Controls.Add(dataGridView1);
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             Name = "MaterialProcurementForm";
             Text = "Material Procurement Management";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
