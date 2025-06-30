@@ -16,7 +16,7 @@ namespace WebApplication1.Controllers
         public AfterSalesController(AppDbContext context) => _context = context;
 
         [HttpPost]
-        public IActionResult CreateRequest([FromBody] AfterSalesRequest request)
+        public IActionResult CreateRequest([FromBody] AfterSales request)
         {
             var claim = User.FindFirstValue(ClaimTypes.NameIdentifier);
             _context.AfterSales.Add(new AfterSales

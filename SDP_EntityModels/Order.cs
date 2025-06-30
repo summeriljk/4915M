@@ -7,5 +7,6 @@
         public int toy_id { get; set; }
         public int quantity { get; set; }
         public DateTime order_date { get; set; }
+        public string Status { get; set; }
     }
 }
