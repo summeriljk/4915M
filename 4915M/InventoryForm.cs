@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Data;
-using System.Net.Http;
-using System.Text;
-using System.Text.Json;
 using System.Windows.Forms;
+using DatabaseAccessController;
 
 namespace _4915M
 {
     public partial class InventoryForm : Form
     {
-        private readonly HttpClient _httpClient;
+        private string connectionString = "server=localhost;port=3306;user id=root;password=;database=company;charset=utf8;";
+        private dboInventoryController inventoryController;
         private DataTable _inventoryTable;
 
         public InventoryForm()
@@ -22,45 +21,32 @@ namespace _4915M
             label2.Text = "Adjustment Reason:";
             btnSubmit.Text = "Submit Adjustment";
 
-            _httpClient = new HttpClient
-            {
-                BaseAddress = new Uri("https://localhost:7147") 
-            };
+            inventoryController = new dboInventoryController(connectionString);
         }
 
-        private async void InventoryForm_Load(object sender, EventArgs e)
+        private void InventoryForm_Load(object sender, EventArgs e)
         {
-            await LoadInventoryData();
+            LoadInventoryData();
             dataGridView1.DataSource = _inventoryTable;
             dataGridView1.CellClick += DataGridView1_CellClick;
         }
 
-        private async Task LoadInventoryData()
+        private void LoadInventoryData()
         {
             try
             {
-                var response = await _httpClient.GetAsync("api/Inventory/warning");
-                response.EnsureSuccessStatusCode();
+                _inventoryTable = inventoryController.GetLowStockProducts();
 
-                var content = await response.Content.ReadAsStringAsync();
-                var products = JsonSerializer.Deserialize<Product[]>(content);
-
-                _inventoryTable = new DataTable();
-                _inventoryTable.Columns.Add("Product ID", typeof(int));
-                _inventoryTable.Columns.Add("Product Name", typeof(string));
-                _inventoryTable.Columns.Add("Current Stock", typeof(int));
-                _inventoryTable.Columns.Add("Minimum Stock", typeof(int));
-                _inventoryTable.Columns.Add("Status", typeof(string));
-
-                foreach (var product in products)
+                if (!_inventoryTable.Columns.Contains("Status"))
                 {
-                    _inventoryTable.Rows.Add(
-                        product.Id,
-                        product.Name,
-                        product.Stock,
-                        product.MinimumStockLevel,
-                        product.Stock < product.MinimumStockLevel ? "Low Stock" : "Normal"
-                    );
+                    _inventoryTable.Columns.Add("Status", typeof(string));
+                }
+
+                foreach (DataRow row in _inventoryTable.Rows)
+                {
+                    int stock = Convert.ToInt32(row["Stock"]);
+                    int minimumStockLevel = Convert.ToInt32(row["MinimumStockLevel"]);
+                    row["Status"] = stock < minimumStockLevel ? "Low Stock" : "Normal";
                 }
             }
             catch (Exception ex)
@@ -78,7 +64,7 @@ namespace _4915M
             }
         }
 
-        private async void btnSubmit_Click(object sender, EventArgs e)
+        private void btnSubmit_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
             {
@@ -95,37 +81,27 @@ namespace _4915M
             }
 
             var selectedRow = dataGridView1.SelectedRows[0];
-            var productId = (int)selectedRow.Cells["Product ID"].Value;
+            var productId = (int)selectedRow.Cells["Id"].Value;
             var adjustment = (int)numericUpDownAdjustment.Value;
             var reason = txtReason.Text;
+            var adminId = 1; 
 
             try
             {
-                var request = new InventoryAdjustRequest
-                {
-                    ProductId = productId,
-                    AdjustAmount = adjustment,
-                    Reason = reason
-                };
+                int rowsAffected = inventoryController.AdjustInventory(productId, adjustment, reason, adminId);
 
-                var json = JsonSerializer.Serialize(request);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                var response = await _httpClient.PostAsync("api/Inventory/adjust", content);
-
-                if (response.IsSuccessStatusCode)
+                if (rowsAffected > 0)
                 {
                     MessageBox.Show("Inventory adjustment successful",
                         "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    await LoadInventoryData();
+                    LoadInventoryData();
                     dataGridView1.DataSource = _inventoryTable;
                     txtReason.Clear();
                     numericUpDownAdjustment.Value = 0;
                 }
                 else
                 {
-                    var errorContent = await response.Content.ReadAsStringAsync();
-                    MessageBox.Show($"Inventory adjustment failed: {response.ReasonPhrase}\n{errorContent}",
+                    MessageBox.Show("Inventory adjustment failed",
                         "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -135,20 +111,5 @@ namespace _4915M
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-    }
-
-    public class Product
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int Stock { get; set; }
-        public int MinimumStockLevel { get; set; }
-    }
-
-    public class InventoryAdjustRequest
-    {
-        public int ProductId { get; set; }
-        public int AdjustAmount { get; set; }
-        public string Reason { get; set; }
     }
 }

@@ -44,12 +44,12 @@
             dataGridViewOrders.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewOrders.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewOrders.Location = new Point(498, 26);
+            dataGridViewOrders.Location = new Point(449, 26);
             dataGridViewOrders.Name = "dataGridViewOrders";
             dataGridViewOrders.ReadOnly = true;
             dataGridViewOrders.RowHeadersWidth = 51;
             dataGridViewOrders.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewOrders.Size = new Size(557, 251);
+            dataGridViewOrders.Size = new Size(606, 251);
             dataGridViewOrders.TabIndex = 0;
             // 
             // groupBox1
@@ -110,7 +110,6 @@
             label1.Size = new Size(111, 20);
             label1.TabIndex = 0;
             label1.Text = "order number";
-            label1.Click += label1_Click;
             // 
             // ShippingForm
             // 

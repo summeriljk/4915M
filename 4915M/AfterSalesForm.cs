@@ -1,28 +1,18 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Net.Http;
-using System.Text;
-using Newtonsoft.Json;
+using DatabaseAccessController;
 
 namespace _4915M
 {
     public partial class AfterSalesForm : Form
     {
-        private readonly HttpClient _httpClient = new HttpClient();
-        private const string ApiUrl = "https://localhost:7174";
+        private string connectionString = "server=localhost;port=3306;user id=root;password=;database=company;charset=utf8;";
+        private dboAfterSalesController afterSalesController;
 
         public AfterSalesForm()
         {
             InitializeComponent();
-            SetupHttpClient();
-        }
-
-        private void SetupHttpClient()
-        {
-            _httpClient.BaseAddress = new Uri(ApiUrl);
-            _httpClient.DefaultRequestHeaders.Accept.Clear();
-            _httpClient.DefaultRequestHeaders.Accept.Add(
-                new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            afterSalesController = new dboAfterSalesController(connectionString);
         }
 
         private async void btnSubmitRequest_Click(object sender, EventArgs e)
@@ -43,20 +33,13 @@ namespace _4915M
 
             try
             {
-                var request = new
-                {
-                    OrderNumber = txtOrderNumber.Text.Trim(),
-                    IssueType = cmbIssueType.SelectedItem.ToString(),
-                    ResolutionStatus = cmbResolutionStatus.SelectedItem?.ToString(),
-                    SubmissionDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
-                };
+                int orderId = int.Parse(txtOrderNumber.Text.Trim());
+                string issueType = cmbIssueType.SelectedItem.ToString();
+                string description = ""; 
 
-                var json = JsonConvert.SerializeObject(request);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                int rowsAffected = afterSalesController.CreateRequest(orderId, issueType, description);
 
-                var response = await _httpClient.PostAsync("requests", content);
-
-                if (response.IsSuccessStatusCode)
+                if (rowsAffected > 0)
                 {
                     MessageBox.Show("Your after-sales request has been submitted successfully.\nOur team will contact you shortly.",
                         "Request Submitted", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -64,8 +47,7 @@ namespace _4915M
                 }
                 else
                 {
-                    var errorContent = await response.Content.ReadAsStringAsync();
-                    MessageBox.Show($"Unable to submit request:\n{response.ReasonPhrase}\n{errorContent}",
+                    MessageBox.Show("Unable to submit request.",
                         "Submission Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
