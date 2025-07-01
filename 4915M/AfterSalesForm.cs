@@ -9,7 +9,7 @@ namespace _4915M
     public partial class AfterSalesForm : Form
     {
         private readonly HttpClient _httpClient = new HttpClient();
-        private const string ApiUrl = "https://localhost:7147";
+        private const string ApiUrl = "https://localhost:7174";
 
         public AfterSalesForm()
         {
