@@ -9,68 +9,67 @@ namespace DatabaseAccessController
         {
         }
 
-        /// <summary>
-        /// </summary>
-        /// <param name="orderId">Order ID</param>
-        /// <param name="type">Request type</param>
-        /// <param name="description">Request description</param>
-        /// <returns>Number of rows affected</returns>
         public int CreateRequest(int orderId, string type, string description)
         {
             string sqlCmd = @"
                 INSERT INTO AfterSales (OrderId, Type, Description, Status, CreatedAt)
-                VALUES (@OrderId, @Type, @Description, 'pending', NOW())
+                VALUES (@OrderId, @Type, @Description, 'Pending', NOW())
             ";
 
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
-                try
+                conn.Open();
+                using (MySqlCommand cmd = new MySqlCommand(sqlCmd, conn))
                 {
-                    conn.Open();
-                    using (MySqlCommand cmd = new MySqlCommand(sqlCmd, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@OrderId", orderId);
-                        cmd.Parameters.AddWithValue("@Type", type);
-                        cmd.Parameters.AddWithValue("@Description", description);
-                        return cmd.ExecuteNonQuery();
-                    }
-                }
-                catch (Exception)
-                {
-                    throw;
+                    cmd.Parameters.AddWithValue("@OrderId", orderId);
+                    cmd.Parameters.AddWithValue("@Type", type);
+                    cmd.Parameters.AddWithValue("@Description", description);
+                    return cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        /// <summary>
-        /// </summary>
-        /// <param name="id">Request ID</param>
-        /// <param name="approve">Whether to approve the request</param>
-        /// <returns>Number of rows affected</returns>
-        public int ResolveRequest(int id, bool approve)
+        public DataTable GetAllRequests()
         {
-            string status = approve ? "resolved" : "rejected";
             string sqlCmd = @"
-                UPDATE AfterSales
-                SET Status = @Status
-                WHERE Id = @Id
-            ";
+                SELECT 
+                    Id AS 'Request ID',
+                    OrderId AS 'Order Number',
+                    Type AS 'Issue Type',
+                    Description AS 'Description',
+                    Status AS 'Status',
+                    DATE_FORMAT(CreatedAt, '%Y-%m-%d %H:%i') AS 'Created Date'
+                FROM AfterSales
+                ORDER BY CreatedAt DESC";
 
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
-                try
+                conn.Open();
+                using (MySqlCommand cmd = new MySqlCommand(sqlCmd, conn))
                 {
-                    conn.Open();
-                    using (MySqlCommand cmd = new MySqlCommand(sqlCmd, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@Status", status);
-                        cmd.Parameters.AddWithValue("@Id", id);
-                        return cmd.ExecuteNonQuery();
-                    }
+                    DataTable dt = new DataTable();
+                    dt.Load(cmd.ExecuteReader());
+                    return dt;
                 }
-                catch (Exception)
+            }
+        }
+
+        public int ResolveRequest(int id, bool approve)
+        {
+            string status = approve ? "Resolved" : "Rejected";
+            string sqlCmd = @"
+                UPDATE AfterSales
+                SET Status = @Status
+                WHERE Id = @Id";
+
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                using (MySqlCommand cmd = new MySqlCommand(sqlCmd, conn))
                 {
-                    throw;
+                    cmd.Parameters.AddWithValue("@Status", status);
+                    cmd.Parameters.AddWithValue("@Id", id);
+                    return cmd.ExecuteNonQuery();
                 }
             }
         }

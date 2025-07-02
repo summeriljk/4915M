@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Windows.Forms;
 using DatabaseAccessController;
 
@@ -13,6 +14,11 @@ namespace _4915M
         {
             InitializeComponent();
             afterSalesController = new dboAfterSalesController(connectionString);
+        }
+
+        private void AfterSalesForm_Load(object sender, EventArgs e)
+        {
+            LoadAfterSalesData();
         }
 
         private async void btnSubmitRequest_Click(object sender, EventArgs e)
@@ -35,40 +41,51 @@ namespace _4915M
             {
                 int orderId = int.Parse(txtOrderNumber.Text.Trim());
                 string issueType = cmbIssueType.SelectedItem.ToString();
-                string description = ""; 
+                string description = txtDescription.Text;
 
                 int rowsAffected = afterSalesController.CreateRequest(orderId, issueType, description);
 
                 if (rowsAffected > 0)
                 {
-                    MessageBox.Show("Submission is complete",
-                                      "Request Submitted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Request submitted successfully",
+                                      "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ClearForm();
+                    LoadAfterSalesData(); // Refresh grid data
                 }
                 else
                 {
-                    MessageBox.Show("Unable to submit request.",
+                    MessageBox.Show("Failed to submit request",
                         "Submission Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An unexpected error occurred:\n{ex.Message}",
+                MessageBox.Show($"An error occurred:\n{ex.Message}",
                     "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadAfterSalesData()
+        {
+            try
+            {
+                DataTable dt = afterSalesController.GetAllRequests();
+                dgvAfterSales.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to load after-sales data: {ex.Message}",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void ClearForm()
         {
             txtOrderNumber.Clear();
+            txtDescription.Clear();
             cmbIssueType.SelectedIndex = -1;
             cmbResolutionStatus.SelectedIndex = 0;
             txtOrderNumber.Focus();
-        }
-
-        private void AfterSalesForm_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
