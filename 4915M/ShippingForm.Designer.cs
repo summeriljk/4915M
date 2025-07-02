@@ -1,16 +1,9 @@
-﻿namespace _4915M
+﻿namespace ShippingApp
 {
     partial class ShippingForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,121 +13,127 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            dataGridViewOrders = new DataGridView();
+            dgvShipping = new DataGridView();
             groupBox1 = new GroupBox();
-            btnShip = new Button();
+            btnAdd = new Button();
+            cmbStatus = new ComboBox();
+            label4 = new Label();
             cmbCourier = new ComboBox();
-            label2 = new Label();
+            label3 = new Label();
             txtTrackingNumber = new TextBox();
+            label2 = new Label();
+            txtOrderId = new TextBox();
             label1 = new Label();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewOrders).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvShipping).BeginInit();
             groupBox1.SuspendLayout();
             SuspendLayout();
-            // 
-            // dataGridViewOrders
-            // 
-            dataGridViewOrders.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridViewOrders.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewOrders.Location = new Point(449, 26);
-            dataGridViewOrders.Name = "dataGridViewOrders";
-            dataGridViewOrders.ReadOnly = true;
-            dataGridViewOrders.RowHeadersWidth = 51;
-            dataGridViewOrders.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewOrders.Size = new Size(606, 251);
-            dataGridViewOrders.TabIndex = 0;
-            // 
-            // groupBox1
-            // 
-            groupBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            groupBox1.Controls.Add(btnShip);
-            groupBox1.Controls.Add(dataGridViewOrders);
+
+            dgvShipping.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvShipping.Location = new Point(12, 12);
+            dgvShipping.Name = "dgvShipping";
+            dgvShipping.RowHeadersWidth = 51;
+            dgvShipping.Size = new Size(776, 300);
+            dgvShipping.TabIndex = 0;
+
+            groupBox1.Controls.Add(btnAdd);
+            groupBox1.Controls.Add(cmbStatus);
+            groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(cmbCourier);
-            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(txtTrackingNumber);
+            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(txtOrderId);
             groupBox1.Controls.Add(label1);
-            groupBox1.Location = new Point(23, 22);
+            groupBox1.Location = new Point(12, 318);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1120, 367);
+            groupBox1.Size = new Size(776, 169);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
-            groupBox1.Text = "Shipping information";
-            // 
-            // btnShip
-            // 
-            btnShip.Location = new Point(164, 304);
-            btnShip.Name = "btnShip";
-            btnShip.Size = new Size(196, 29);
-            btnShip.TabIndex = 4;
-            btnShip.Text = "Confirm the shipment";
-            btnShip.UseVisualStyleBackColor = true;
-            // 
-            // cmbCourier
-            // 
+            groupBox1.Text = "Add New Shipping Record";
+
+            btnAdd.Location = new Point(210, 118);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(260, 30);
+            btnAdd.TabIndex = 8;
+            btnAdd.Text = "Add Record";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
+
+            cmbStatus.FormattingEnabled = true;
+            cmbStatus.Items.AddRange(new object[] { "Shipped", "In Transit", "Delivered" });
+            cmbStatus.Location = new Point(500, 50);
+            cmbStatus.Name = "cmbStatus";
+            cmbStatus.Size = new Size(120, 28);
+            cmbStatus.TabIndex = 7;
+
+            label4.AutoSize = true;
+            label4.Location = new Point(500, 30);
+            label4.Name = "label4";
+            label4.Size = new Size(54, 20);
+            label4.TabIndex = 6;
+            label4.Text = "Status";
+
             cmbCourier.FormattingEnabled = true;
-            cmbCourier.Items.AddRange(new object[] { "SF Express", "FedEx", "UPS" });
-            cmbCourier.Location = new Point(245, 192);
+            cmbCourier.Items.AddRange(new object[] { "FedEx", "UPS", "DHL" });
+            cmbCourier.Location = new Point(350, 50);
             cmbCourier.Name = "cmbCourier";
-            cmbCourier.Size = new Size(151, 28);
-            cmbCourier.TabIndex = 3;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(19, 192);
-            label2.Name = "label2";
-            label2.Size = new Size(146, 20);
-            label2.TabIndex = 2;
-            label2.Text = "Courier companies";
-            // 
-            // txtTrackingNumber
-            // 
-            txtTrackingNumber.Location = new Point(260, 105);
+            cmbCourier.Size = new Size(120, 28);
+            cmbCourier.TabIndex = 5;
+ 
+            label3.AutoSize = true;
+            label3.Location = new Point(350, 30);
+            label3.Name = "label3";
+            label3.Size = new Size(63, 20);
+            label3.TabIndex = 4;
+            label3.Text = "Courier";
+
+            txtTrackingNumber.Location = new Point(200, 50);
             txtTrackingNumber.Name = "txtTrackingNumber";
-            txtTrackingNumber.Size = new Size(125, 27);
-            txtTrackingNumber.TabIndex = 1;
-            // 
-            // label1
-            // 
+            txtTrackingNumber.Size = new Size(120, 27);
+            txtTrackingNumber.TabIndex = 3;
+
+            label2.AutoSize = true;
+            label2.Location = new Point(200, 30);
+            label2.Name = "label2";
+            label2.Size = new Size(135, 20);
+            label2.TabIndex = 2;
+            label2.Text = "Tracking Number";
+
+            txtOrderId.Location = new Point(50, 50);
+            txtOrderId.Name = "txtOrderId";
+            txtOrderId.Size = new Size(120, 27);
+            txtOrderId.TabIndex = 1;
+
             label1.AutoSize = true;
-            label1.Location = new Point(54, 105);
+            label1.Location = new Point(50, 30);
             label1.Name = "label1";
-            label1.Size = new Size(111, 20);
+            label1.Size = new Size(71, 20);
             label1.TabIndex = 0;
-            label1.Text = "order number";
-            // 
-            // ShippingForm
-            // 
-            AutoScaleDimensions = new SizeF(9F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1214, 450);
+            label1.Text = "Order ID";
+
+            ClientSize = new Size(800, 499);
             Controls.Add(groupBox1);
+            Controls.Add(dgvShipping);
             Name = "ShippingForm";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "Fulfillment management";
-            Load += ShippingForm_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridViewOrders).EndInit();
+            Text = "Shipping Management System";
+            ((System.ComponentModel.ISupportInitialize)dgvShipping).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);
         }
 
-        #endregion
-
-        private DataGridView dataGridViewOrders;
-        private GroupBox groupBox1;
-        private Label label1;
-        private TextBox txtTrackingNumber;
-        private ComboBox cmbCourier;
-        private Label label2;
-        private Button btnShip;
+        private System.Windows.Forms.DataGridView dgvShipping;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.ComboBox cmbStatus;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cmbCourier;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtTrackingNumber;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtOrderId;
+        private System.Windows.Forms.Label label1;
     }
 }

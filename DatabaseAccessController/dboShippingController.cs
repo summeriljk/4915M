@@ -4,30 +4,40 @@ using MySql.Data.MySqlClient;
 
 namespace DatabaseAccessController
 {
-    public class dboShippingController : dboDatabaseController
+    public class dboShippingController
     {
-        public dboShippingController(string connectionString) : base(connectionString) { }
+        private readonly string _connectionString;
 
-        public DataTable GetPendingOrders()
+        public dboShippingController(string connectionString)
         {
-            string sqlCmd = @"
-                SELECT o.order_id, o.customerID, o.toy_id, o.quantity, o.order_date
-                FROM orders o
-                LEFT JOIN shipping s ON o.order_id = s.order_id
-                WHERE s.order_id IS NULL OR s.status != 'Shipped'";
-            return GetData(sqlCmd);
+            _connectionString = connectionString;
         }
 
-        public int AddShippingInfo(int orderId, string trackingNumber, string courier, string status)
+        public DataTable GetShippingRecords()
         {
-            string sqlCmd = @"
-                INSERT INTO shipping (order_id, tracking_number, courier, status)
-                VALUES (@orderId, @trackingNumber, @courier, @status)";
-
-            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            using (var conn = new MySqlConnection(_connectionString))
             {
                 conn.Open();
-                using (MySqlCommand cmd = new MySqlCommand(sqlCmd, conn))
+                using (var cmd = new MySqlCommand("SELECT * FROM shipping", conn))
+                {
+                    using (var adapter = new MySqlDataAdapter(cmd))
+                    {
+                        var dt = new DataTable();
+                        adapter.Fill(dt);
+                        return dt;
+                    }
+                }
+            }
+        }
+
+        public int AddShippingRecord(int orderId, string trackingNumber, string courier, string status)
+        {
+            using (var conn = new MySqlConnection(_connectionString))
+            {
+                conn.Open();
+                using (var cmd = new MySqlCommand(
+                    "INSERT INTO shipping (order_id, tracking_number, courier, status) " +
+                    "VALUES (@orderId, @trackingNumber, @courier, @status)", conn))
                 {
                     cmd.Parameters.AddWithValue("@orderId", orderId);
                     cmd.Parameters.AddWithValue("@trackingNumber", trackingNumber);
