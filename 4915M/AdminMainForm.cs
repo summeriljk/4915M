@@ -19,7 +19,7 @@ namespace _4915M
 
         private void btnInventory_Click(object sender, EventArgs e)
         {
-            InventoryForm inventoryForm = new InventoryForm();
+            InventoryForm inventoryForm = new InventoryForm(1, "Admin");
             inventoryForm.ShowDialog();
         }
 

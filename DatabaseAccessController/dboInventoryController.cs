@@ -1,85 +1,119 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using MySql.Data.MySqlClient;
 
 namespace DatabaseAccessController
 {
-    public class dboInventoryController : dboDatabaseController
+    public class dboInventoryController
     {
-        public dboInventoryController(string connectionString) : base(connectionString)
+        private readonly string _connectionString;
+
+        public dboInventoryController(string connectionString)
         {
+            _connectionString = connectionString;
         }
 
-        /// <summary>
-        /// </summary>
-        /// <returns>DataTable containing low stock products</returns>
-        public DataTable GetLowStockProducts()
+        public DataTable GetAllProductsWithStockStatus()
         {
-            string sqlCmd = @"
-                SELECT p.Id, p.Name, p.Stock, p.MinimumStockLevel
-                FROM Products p
-                WHERE p.Stock < p.MinimumStockLevel
-            ";
+            DataTable dt = new DataTable();
 
-            return GetData(sqlCmd);
-        }
-
-        /// <summary>
-        /// </summary>
-        /// <param name="productId">Product ID</param>
-        /// <param name="adjustAmount">Adjustment amount (positive to add, negative to subtract)</param>
-        /// <param name="reason">Reason for adjustment</param>
-        /// <param name="adminId">Admin ID who made the change</param>
-        /// <returns>Number of affected rows</returns>
-        public int AdjustInventory(int productId, int adjustAmount, string reason, int adminId)
-        {
-            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            using (MySqlConnection conn = new MySqlConnection(_connectionString))
             {
+                string sql = @"
+                    SELECT 
+                        p.Id, 
+                        p.Name, 
+                        p.Stock, 
+                        p.MinimumStockLevel,
+                        CASE 
+                            WHEN p.Stock < p.MinimumStockLevel THEN 'Low Stock'
+                            ELSE 'In Stock'
+                        END AS Status
+                    FROM Products p
+                    ORDER BY p.Name";
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+
+                conn.Open();
+                adapter.Fill(dt);
+            }
+
+            return dt;
+        }
+
+        public DataTable GetInventoryLogs()
+        {
+            DataTable dt = new DataTable();
+
+            using (MySqlConnection conn = new MySqlConnection(_connectionString))
+            {
+                string sql = @"
+                    SELECT 
+                        l.Id,
+                        p.Name AS ProductName,
+                        l.ChangeAmount,
+                        l.Reason,
+                        a.adminName AS AdminName,
+                        l.CreatedAt
+                    FROM InventoryLogs l
+                    JOIN Products p ON l.ProductId = p.Id
+                    JOIN Admin a ON l.AdminId = a.adminID
+                    ORDER BY l.CreatedAt DESC";
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+
+                conn.Open();
+                adapter.Fill(dt);
+            }
+
+            return dt;
+        }
+
+        public int AdjustInventory(int productId, int changeAmount, string reason, int adminId)
+        {
+            using (MySqlConnection conn = new MySqlConnection(_connectionString))
+            {
+                conn.Open();
+                MySqlTransaction transaction = conn.BeginTransaction();
+
                 try
                 {
-                    conn.Open();
-                    using (MySqlTransaction transaction = conn.BeginTransaction())
+                    string updateSql = @"
+                        UPDATE Products 
+                        SET Stock = Stock + @changeAmount 
+                        WHERE Id = @productId";
+
+                    MySqlCommand updateCmd = new MySqlCommand(updateSql, conn, transaction);
+                    updateCmd.Parameters.AddWithValue("@changeAmount", changeAmount);
+                    updateCmd.Parameters.AddWithValue("@productId", productId);
+                    int rowsAffected = updateCmd.ExecuteNonQuery();
+
+                    if (rowsAffected == 0)
                     {
-                        try
-                        {
-                            string updateProductSql = @"
-                                UPDATE Products
-                                SET Stock = Stock + @AdjustAmount
-                                WHERE Id = @ProductId
-                            ";
-
-                            using (MySqlCommand updateProductCmd = new MySqlCommand(updateProductSql, conn, transaction))
-                            {
-                                updateProductCmd.Parameters.AddWithValue("@AdjustAmount", adjustAmount);
-                                updateProductCmd.Parameters.AddWithValue("@ProductId", productId);
-                                updateProductCmd.ExecuteNonQuery();
-                            }
-
-                            string insertLogSql = @"
-                                INSERT INTO InventoryLogs (ProductId, ChangeAmount, Reason, AdminId, CreatedAt)
-                                VALUES (@ProductId, @ChangeAmount, @Reason, @AdminId, NOW())
-                            ";
-
-                            using (MySqlCommand insertLogCmd = new MySqlCommand(insertLogSql, conn, transaction))
-                            {
-                                insertLogCmd.Parameters.AddWithValue("@ProductId", productId);
-                                insertLogCmd.Parameters.AddWithValue("@ChangeAmount", adjustAmount);
-                                insertLogCmd.Parameters.AddWithValue("@Reason", reason);
-                                insertLogCmd.Parameters.AddWithValue("@AdminId", adminId);
-                                insertLogCmd.ExecuteNonQuery();
-                            }
-
-                            transaction.Commit();
-                            return 1;
-                        }
-                        catch (Exception)
-                        {
-                            transaction.Rollback();
-                            throw;
-                        }
+                        transaction.Rollback();
+                        return 0;
                     }
+
+                    string logSql = @"
+                        INSERT INTO InventoryLogs 
+                        (ProductId, ChangeAmount, Reason, AdminId) 
+                        VALUES (@productId, @changeAmount, @reason, @adminId)";
+
+                    MySqlCommand logCmd = new MySqlCommand(logSql, conn, transaction);
+                    logCmd.Parameters.AddWithValue("@productId", productId);
+                    logCmd.Parameters.AddWithValue("@changeAmount", changeAmount);
+                    logCmd.Parameters.AddWithValue("@reason", reason);
+                    logCmd.Parameters.AddWithValue("@adminId", adminId);
+                    logCmd.ExecuteNonQuery();
+
+                    transaction.Commit();
+                    return 1;
                 }
-                catch (Exception)
+                catch
                 {
+                    transaction.Rollback();
                     throw;
                 }
             }
