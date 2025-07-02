@@ -40,9 +40,7 @@
             btnSearch = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
-            // 
-            // dataGridView1
-            // 
+
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4 });
             dataGridView1.Location = new Point(13, 13);
@@ -52,37 +50,27 @@
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(696, 560);
             dataGridView1.TabIndex = 0;
-            // 
-            // Column1
-            // 
+
             Column1.HeaderText = "Order ID";
             Column1.MinimumWidth = 6;
             Column1.Name = "Column1";
             Column1.Width = 125;
-            // 
-            // Column2
-            // 
+
             Column2.HeaderText = "Material Name";
             Column2.MinimumWidth = 6;
             Column2.Name = "Column2";
             Column2.Width = 125;
-            // 
-            // Column3
-            // 
+
             Column3.HeaderText = "Quantity";
             Column3.MinimumWidth = 6;
             Column3.Name = "Column3";
             Column3.Width = 125;
-            // 
-            // Column4
-            // 
+ 
             Column4.HeaderText = "Status";
             Column4.MinimumWidth = 6;
             Column4.Name = "Column4";
             Column4.Width = 125;
-            // 
-            // btnAdd
-            // 
+
             btnAdd.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 134);
             btnAdd.Location = new Point(747, 56);
             btnAdd.Margin = new Padding(4, 4, 4, 4);
@@ -92,9 +80,7 @@
             btnAdd.Text = "Add Procurement Order";
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
-            // 
-            // btnEdit
-            // 
+
             btnEdit.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 134);
             btnEdit.Location = new Point(980, 56);
             btnEdit.Margin = new Padding(4, 4, 4, 4);
@@ -104,9 +90,7 @@
             btnEdit.Text = "Edit Procurement Order";
             btnEdit.UseVisualStyleBackColor = true;
             btnEdit.Click += btnEdit_Click;
-            // 
-            // btnRefresh
-            // 
+
             btnRefresh.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 134);
             btnRefresh.Location = new Point(980, 218);
             btnRefresh.Margin = new Padding(4, 4, 4, 4);
@@ -116,18 +100,14 @@
             btnRefresh.Text = "Refresh";
             btnRefresh.UseVisualStyleBackColor = true;
             btnRefresh.Click += btnRefresh_Click;
-            // 
-            // txtSearch
-            // 
+
             txtSearch.Font = new Font("Microsoft YaHei UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 134);
             txtSearch.Location = new Point(734, 366);
             txtSearch.Margin = new Padding(4, 4, 4, 4);
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(225, 46);
             txtSearch.TabIndex = 4;
-            // 
-            // btnSearch
-            // 
+
             btnSearch.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 134);
             btnSearch.Location = new Point(980, 352);
             btnSearch.Margin = new Padding(4, 4, 4, 4);
@@ -137,9 +117,7 @@
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = true;
             btnSearch.Click += btnSearch_Click;
-            // 
-            // MaterialProcurementForm
-            // 
+
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1283, 589);

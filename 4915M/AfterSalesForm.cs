@@ -41,8 +41,8 @@ namespace _4915M
 
                 if (rowsAffected > 0)
                 {
-                    MessageBox.Show("Your after-sales request has been submitted successfully.\nOur team will contact you shortly.",
-                        "Request Submitted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Submission is complete",
+                                      "Request Submitted", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ClearForm();
                 }
                 else

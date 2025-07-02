@@ -14,7 +14,18 @@ namespace _4915M
         {
             InitializeComponent();
             procurementController = new dboMaterialProcurementController(connectionString);
+            ConfigureDataGridView();
             LoadProcurementOrders();
+        }
+
+        private void ConfigureDataGridView()
+        {
+            dataGridView1.AutoGenerateColumns = false;
+
+            Column1.DataPropertyName = "order_id";
+            Column2.DataPropertyName = "material_name";
+            Column3.DataPropertyName = "quantity";
+            Column4.DataPropertyName = "status";
         }
 
         private void LoadProcurementOrders()
@@ -60,8 +71,7 @@ namespace _4915M
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                int orderID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["OrderID"].Value);
-
+                int orderID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["Column1"].Value);
                 EditProcurementOrder editOrderForm = new EditProcurementOrder(this, orderID);
                 editOrderForm.ShowDialog();
             }
