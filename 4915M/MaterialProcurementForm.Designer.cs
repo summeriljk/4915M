@@ -2,15 +2,8 @@
 {
     partial class MaterialProcurementForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,12 +13,6 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             dataGridView1 = new DataGridView();
@@ -65,7 +52,7 @@
             Column3.MinimumWidth = 6;
             Column3.Name = "Column3";
             Column3.Width = 125;
- 
+
             Column4.HeaderText = "Status";
             Column4.MinimumWidth = 6;
             Column4.Name = "Column4";
@@ -134,8 +121,6 @@
             ResumeLayout(false);
             PerformLayout();
         }
-
-        #endregion
 
         private DataGridView dataGridView1;
         private Button btnAdd;
