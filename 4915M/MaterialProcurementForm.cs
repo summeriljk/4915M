@@ -26,6 +26,8 @@ namespace _4915M
             Column2.DataPropertyName = "material_name";
             Column3.DataPropertyName = "quantity";
             Column4.DataPropertyName = "status";
+
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
         private void LoadProcurementOrders()
@@ -34,6 +36,15 @@ namespace _4915M
             {
                 DataTable procurementData = procurementController.GetAllProcurementOrders();
                 dataGridView1.DataSource = procurementData;
+
+                if (procurementData.Rows.Count > 0)
+                {
+                    MessageBox.Show($"Loaded {procurementData.Rows.Count} procurement orders.");
+                }
+                else
+                {
+                    MessageBox.Show("No procurement orders found.");
+                }
             }
             catch (Exception ex)
             {

@@ -31,6 +31,7 @@ namespace _4915M
                 {
                     txtMaterialName.Text = orderData.Rows[0]["material_name"].ToString();
                     txtQuantity.Text = orderData.Rows[0]["quantity"].ToString();
+                    txtStatus.Text = orderData.Rows[0]["status"].ToString(); 
                 }
             }
             catch (Exception ex)
@@ -45,6 +46,7 @@ namespace _4915M
             {
                 string materialName = txtMaterialName.Text.Trim();
                 string quantity = txtQuantity.Text.Trim();
+                string status = txtStatus.Text.Trim(); 
 
                 if (string.IsNullOrEmpty(materialName))
                 {
@@ -67,13 +69,14 @@ namespace _4915M
                     {
                         string updateSql = @"
                             UPDATE procurement_orders
-                            SET material_name = @materialName, quantity = @quantity
+                            SET material_name = @materialName, quantity = @quantity, status = @status
                             WHERE order_id = @orderID";
 
                         using (MySqlCommand cmd = new MySqlCommand(updateSql, conn, transaction))
                         {
                             cmd.Parameters.AddWithValue("@materialName", materialName);
                             cmd.Parameters.AddWithValue("@quantity", parsedQuantity);
+                            cmd.Parameters.AddWithValue("@status", status); 
                             cmd.Parameters.AddWithValue("@orderID", orderID);
 
                             int rowsAffected = cmd.ExecuteNonQuery();

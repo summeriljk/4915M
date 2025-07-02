@@ -31,17 +31,13 @@
             lblIssueType = new Label();
             lblResolutionStatus = new Label();
             SuspendLayout();
-            // 
-            // txtOrderNumber
-            // 
+
             txtOrderNumber.Location = new Point(180, 46);
             txtOrderNumber.Margin = new Padding(4, 5, 4, 5);
             txtOrderNumber.Name = "txtOrderNumber";
             txtOrderNumber.Size = new Size(298, 27);
             txtOrderNumber.TabIndex = 0;
-            // 
-            // cmbIssueType
-            // 
+
             cmbIssueType.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbIssueType.FormattingEnabled = true;
             cmbIssueType.Items.AddRange(new object[] { "Defective Product", "Incorrect Item Received", "Shipping Delay", "Damaged During Transit", "Other Issue" });
@@ -50,9 +46,7 @@
             cmbIssueType.Name = "cmbIssueType";
             cmbIssueType.Size = new Size(298, 28);
             cmbIssueType.TabIndex = 1;
-            // 
-            // cmbResolutionStatus
-            // 
+
             cmbResolutionStatus.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbResolutionStatus.FormattingEnabled = true;
             cmbResolutionStatus.Items.AddRange(new object[] { "New Request", "In Progress", "Completed", "Cancelled" });
@@ -61,9 +55,7 @@
             cmbResolutionStatus.Name = "cmbResolutionStatus";
             cmbResolutionStatus.Size = new Size(298, 28);
             cmbResolutionStatus.TabIndex = 2;
-            // 
-            // btnSubmitRequest
-            // 
+
             btnSubmitRequest.Location = new Point(180, 231);
             btnSubmitRequest.Margin = new Padding(4, 5, 4, 5);
             btnSubmitRequest.Name = "btnSubmitRequest";
@@ -72,9 +64,7 @@
             btnSubmitRequest.Text = "Submit Request";
             btnSubmitRequest.UseVisualStyleBackColor = true;
             btnSubmitRequest.Click += btnSubmitRequest_Click;
-            // 
-            // lblOrderNumber
-            // 
+
             lblOrderNumber.AutoSize = true;
             lblOrderNumber.Location = new Point(45, 51);
             lblOrderNumber.Margin = new Padding(4, 0, 4, 0);
@@ -82,9 +72,7 @@
             lblOrderNumber.Size = new Size(116, 20);
             lblOrderNumber.TabIndex = 4;
             lblOrderNumber.Text = "Order Number";
-            // 
-            // lblIssueType
-            // 
+
             lblIssueType.AutoSize = true;
             lblIssueType.Location = new Point(45, 112);
             lblIssueType.Margin = new Padding(4, 0, 4, 0);
@@ -92,9 +80,7 @@
             lblIssueType.Size = new Size(85, 20);
             lblIssueType.TabIndex = 5;
             lblIssueType.Text = "Issue Type";
-            // 
-            // lblResolutionStatus
-            // 
+
             lblResolutionStatus.AutoSize = true;
             lblResolutionStatus.Location = new Point(45, 174);
             lblResolutionStatus.Margin = new Padding(4, 0, 4, 0);
@@ -102,9 +88,7 @@
             lblResolutionStatus.Size = new Size(136, 20);
             lblResolutionStatus.TabIndex = 6;
             lblResolutionStatus.Text = "Resolution Status";
-            // 
-            // AfterSalesForm
-            // 
+ 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(643, 308);

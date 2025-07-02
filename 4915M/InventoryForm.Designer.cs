@@ -39,9 +39,7 @@
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDownAdjustment).BeginInit();
             SuspendLayout();
-            // 
-            // dataGridView1
-            // 
+
             dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -52,9 +50,7 @@
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(529, 206);
             dataGridView1.TabIndex = 0;
-            // 
-            // groupBox1
-            // 
+
             groupBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             groupBox1.Controls.Add(btnSubmit);
             groupBox1.Controls.Add(dataGridView1);
@@ -68,52 +64,40 @@
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "inventory";
-            // 
-            // btnSubmit
-            // 
+
             btnSubmit.Location = new Point(167, 288);
             btnSubmit.Name = "btnSubmit";
             btnSubmit.Size = new Size(292, 29);
             btnSubmit.TabIndex = 4;
             btnSubmit.Text = "submit";
             btnSubmit.UseVisualStyleBackColor = true;
-            // 
-            // txtReason
-            // 
+
             txtReason.Location = new Point(259, 192);
             txtReason.Name = "txtReason";
             txtReason.Size = new Size(125, 27);
             txtReason.TabIndex = 3;
-            // 
-            // label2
-            // 
+
             label2.AutoSize = true;
             label2.Location = new Point(24, 195);
             label2.Name = "label2";
             label2.Size = new Size(173, 20);
             label2.TabIndex = 2;
             label2.Text = "Reason for adjustment";
-            // 
-            // numericUpDownAdjustment
-            // 
+
             numericUpDownAdjustment.Location = new Point(259, 114);
             numericUpDownAdjustment.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             numericUpDownAdjustment.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
             numericUpDownAdjustment.Name = "numericUpDownAdjustment";
             numericUpDownAdjustment.Size = new Size(150, 27);
             numericUpDownAdjustment.TabIndex = 1;
-            // 
-            // label1
-            // 
+
             label1.AutoSize = true;
             label1.Location = new Point(59, 121);
             label1.Name = "label1";
             label1.Size = new Size(69, 20);
             label1.TabIndex = 0;
             label1.Text = "quantity";
-            // 
-            // InventoryForm
-            // 
+
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1082, 450);
